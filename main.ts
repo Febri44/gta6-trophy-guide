@@ -1,7 +1,7 @@
 // Build script: copies the guide app + screenshots into /output and writes dossier.json.
 // Deterministic: same inputs always produce the same bytes. No network.
 import { buildDossier } from "./vendor/makefun-frontend.ts";
-import { cp, mkdir, rm, stat, writeFile } from "node:fs/promises";
+import { cp, mkdir, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -27,7 +27,6 @@ async function build(): Promise<void> {
   await stat(index).catch(() => {
     throw new Error("app/index.html is missing — nothing to hand in");
   });
-  await rm(outputDir, { recursive: true, force: true });
   await mkdir(outputDir, { recursive: true });
   for (const tree of trees) {
     await mirrorTree(tree.from, tree.to);
