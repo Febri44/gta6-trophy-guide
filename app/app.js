@@ -6,10 +6,14 @@ const listEl = document.getElementById("trophyList");
 const emptyEl = document.getElementById("emptyState");
 const searchInput = document.getElementById("searchInput");
 const gradeFilter = document.getElementById("gradeFilter");
+const sortSelect = document.getElementById("sortSelect");
 const spoilerToggle = document.getElementById("spoilerToggle");
 const earnedOnlyToggle = document.getElementById("earnedOnlyToggle");
 const remainingOnlyToggle = document.getElementById("remainingOnlyToggle");
 const resultsLine = document.getElementById("resultsLine");
+const nextUpEl = document.getElementById("nextUp");
+const nextUpBody = document.getElementById("nextUpBody");
+const nextUpBtn = document.getElementById("nextUpBtn");
 const progressFill = document.getElementById("progressFill");
 const earnedCountEl = document.getElementById("earnedCount");
 const progressPctEl = document.getElementById("progressPct");
@@ -56,6 +60,7 @@ function tagRow(t) {
   row.appendChild(el("span", "tag", t.kind));
   row.appendChild(el("span", "tag", STAGE_LABEL[t.stage]));
   if (t.missable) row.appendChild(el("span", "tag missable", "Missable"));
+  if (t.confirmed === false) row.appendChild(el("span", "tag unconfirmed", "Method unconfirmed"));
   if (t.hidden) row.appendChild(el("span", "tag hidden-tag", "Hidden"));
   const src = el("a", "source-link", "Source: " + t.source_name);
   src.href = t.source_url;
@@ -131,12 +136,15 @@ function openDetail(t) {
   dialog.showModal();
 }
 
+const GRADE_ORDER = { platinum: 0, gold: 1, silver: 2, bronze: 3 };
+
 function visibleTrophies() {
   const q = searchInput.value.trim().toLowerCase();
   const grade = gradeFilter.value;
-  return trophies.filter((t) => {
+  const shown = trophies.filter((t) => {
     if (activeKind === "missable" && !t.missable) return false;
-    if (activeKind !== "all" && activeKind !== "missable" && t.kind !== activeKind) return false;
+    if (activeKind === "unconfirmed" && t.confirmed !== false) return false;
+    if (activeKind !== "all" && activeKind !== "missable" && activeKind !== "unconfirmed" && t.kind !== activeKind) return false;
     if (grade !== "all" && t.grade !== grade) return false;
     if (earnedOnlyToggle.checked && !earned.has(t.id)) return false;
     if (remainingOnlyToggle.checked && earned.has(t.id)) return false;
@@ -146,6 +154,40 @@ function visibleTrophies() {
     }
     return true;
   });
+  const sort = sortSelect.value;
+  if (sort === "name") shown.sort((a, b) => a.name.localeCompare(b.name));
+  else if (sort === "grade") shown.sort((a, b) => (GRADE_ORDER[a.grade] - GRADE_ORDER[b.grade]) || (a.stage - b.stage) || (a.id - b.id));
+  else shown.sort((a, b) => (a.stage - b.stage) || (a.id - b.id));
+  return shown;
+}
+
+let nextTrophy = null;
+
+function renderNextUp() {
+  if (!trophies.length) { nextUpEl.hidden = true; return; }
+  const remaining = trophies.filter((t) => !earned.has(t.id));
+  if (!remaining.length) {
+    nextUpEl.hidden = false;
+    nextUpBody.textContent = "All 55 trophies earned — Vice Got a Price! is yours. Leonida Legend.";
+    nextUpBtn.hidden = true;
+    nextTrophy = null;
+    return;
+  }
+  remaining.sort((a, b) => (a.stage - b.stage) || (a.id - b.id));
+  nextTrophy = remaining[0];
+  nextUpEl.hidden = false;
+  nextUpBody.textContent = "";
+  if (nextTrophy.hidden && spoilerToggle.checked) {
+    // Spoiler mode: never print a hidden trophy's name or guide in the panel.
+    nextUpBtn.hidden = true;
+    nextUpBody.textContent = "Next up is a hidden story trophy in " + STAGE_LABEL[nextTrophy.stage] + ". It pops automatically as you play the campaign — tick it off when it does, and the guide will be revealed.";
+    return;
+  }
+  nextUpBtn.hidden = false;
+  const strong = el("strong", null, nextTrophy.name);
+  nextUpBody.appendChild(strong);
+  nextUpBody.appendChild(document.createTextNode(" — " + STAGE_LABEL[nextTrophy.stage] + ". " + nextTrophy.description + " "));
+  nextUpBody.appendChild(el("span", "next-up-guide", nextTrophy.guide));
 }
 
 function render() {
@@ -173,6 +215,7 @@ function render() {
     const span = document.querySelector('[data-stage-count="' + stage + '"]');
     if (span) span.textContent = got + " / " + total;
   });
+  renderNextUp();
 }
 
 function exportProgress() {
@@ -222,6 +265,10 @@ document.querySelectorAll(".chip").forEach((chip) => {
 
 searchInput.addEventListener("input", render);
 gradeFilter.addEventListener("change", render);
+sortSelect.addEventListener("change", render);
+nextUpBtn.addEventListener("click", () => {
+  if (nextTrophy) openDetail(nextTrophy);
+});
 spoilerToggle.addEventListener("change", render);
 earnedOnlyToggle.addEventListener("change", render);
 remainingOnlyToggle.addEventListener("change", render);

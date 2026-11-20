@@ -8,11 +8,12 @@ The best GTA 6 trophy guide and tracker for all **55 PS5 trophies** — 1 platin
 
 ## What it does
 
-- **A guide for every trophy, in plain words** — each with a cited source beside it (PowerPyx, Push Square, Planet GTA 6, GTA Zone, U7BUY). The five trophies with no confirmed method at launch (In The Beginning…, Capital Offense, Bad Luck, I Guess, The Truth Is Out There, Ten Pin) say so honestly instead of inventing a location or a step.
+- **A guide for every trophy, in plain words** — each with a cited source beside it (PowerPyx, Push Square, Planet GTA 6, GTA Zone, U7BUY). The guide was re-verified against the released game (19 Nov 2026): three trophies that had no confirmed method at launch are now confirmed with steps — In The Beginning… (Ocean View Rooftop Bar, Apple Martini), Capital Offense (the blue Banshee showroom smash-out) and The Truth Is Out There (the Kelly County UFO encounter). The two still unconfirmed (Bad Luck, I Guess; Ten Pin) say so honestly instead of inventing a location or a step, with the best lead each guide offers.
 - **Platinum roadmap in three stages** — play the story, grind the 100% checklist, then strangers, side chains and clean-up. About 200 hours, difficulty 4/10 (PowerPyx).
 - **The one missable trophy, flagged loud** — Positive Mental Attitude: meditate with Lucia on the balcony at Jason's house in Chapter 1, the morning after “Down to Earth”. Gone after Chapter 1, and there is no mission replay.
 - **Tracker** — tick trophies off (saved in localStorage), with export/import of your progress as JSON.
-- **Filters** — story, missable, collectibles, activities, crime, misc, by grade, by search, earned only / not yet earned.
+- **Filters** — story, missable, collectibles, activities, crime, misc, method-unconfirmed, by grade, by search, earned only / not yet earned, and sort by roadmap order, name or grade.
+- **Next up** — the first trophy you have not earned yet, in roadmap order, with its guide one click away (hidden story trophies stay hidden while spoiler mode is on).
 - **Spoiler setting** — hidden (story) trophies stay hidden until you earn them, so the guide never spoils the campaign.
 
 ## Run it

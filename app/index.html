@@ -42,6 +42,12 @@
     </ol>
   </section>
 
+  <section class="next-up" aria-labelledby="nextup-title" id="nextUp" hidden>
+    <h2 id="nextup-title">Next up</h2>
+    <p class="next-up-body" id="nextUpBody"></p>
+    <button id="nextUpBtn" type="button">Open this trophy</button>
+  </section>
+
   <section class="tracker" aria-labelledby="tracker-title">
     <h2 id="tracker-title">Trophy tracker</h2>
 
@@ -58,6 +64,7 @@
         <button class="chip" data-kind="activity" type="button">Activities</button>
         <button class="chip" data-kind="crime" type="button">Crime</button>
         <button class="chip" data-kind="misc" type="button">Misc</button>
+        <button class="chip" data-kind="unconfirmed" type="button">Method unconfirmed</button>
       </div>
       <div class="control-row">
         <label>Grade
@@ -67,6 +74,13 @@
             <option value="gold">Gold</option>
             <option value="silver">Silver</option>
             <option value="bronze">Bronze</option>
+          </select>
+        </label>
+        <label>Sort
+          <select id="sortSelect">
+            <option value="roadmap">Roadmap order</option>
+            <option value="name">Name A–Z</option>
+            <option value="grade">Grade (Plat first)</option>
           </select>
         </label>
         <label class="toggle"><input type="checkbox" id="spoilerToggle" checked> Hide spoiler trophies</label>
@@ -94,7 +108,7 @@
       <li>100% completion thresholds and counts: <a href="https://www.pushsquare.com/guides/gta-6-trophy-guide-and-roadmap">Push Square — GTA 6 Trophy Guide &amp; Roadmap</a>.</li>
       <li>Personal Best (Strength): <a href="https://www.u7buy.com/blog/gta-6-trophies/">U7BUY — GTA 6 Trophy List</a>. Actions Speak Louder (500 profile actions): <a href="https://gta-zone.com/news/gta-6-trophies-achievements/">GTA Zone — GTA 6 Trophies &amp; Achievements</a>.</li>
     </ul>
-    <p>Five trophies have no confirmed method anywhere at launch — In The Beginning…, Capital Offense, Bad Luck, I Guess, The Truth Is Out There and Ten Pin. Their guides say so plainly instead of inventing a location or a step. The game released 19 Nov 2026; expect those methods to be confirmed by the guides above within days.</p>
+    <p>Two trophies still have no confirmed method anywhere — Bad Luck, I Guess (PowerPyx: believed to be related to the Payday Loans store from the Prologue) and Ten Pin (PowerPyx: believed to be from kicking people while driving a motorcycle). Their guides say so plainly instead of inventing a location or a step, and the tracker has a “Method unconfirmed” filter for them. Three more were confirmed within a day of the 19 Nov 2026 launch — In The Beginning… (Ocean View Rooftop Bar, Apple Martini), Capital Offense (the blue Banshee showroom smash-out) and The Truth Is Out There (the Kelly County UFO encounter) — and this guide was updated with the confirmed methods.</p>
     <p class="disclaimer">Unofficial fan guide. Not affiliated with Rockstar Games, Take-Two Interactive or Sony Interactive Entertainment. Grand Theft Auto, GTA and Vice City are trademarks of their owners. No official artwork, logos or game screenshots are used here.</p>
   </section>
 </main>

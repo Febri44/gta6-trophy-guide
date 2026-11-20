@@ -116,6 +116,30 @@ h3 { font-size: 17px; margin: 0 0 6px; }
 .stage-count { color: var(--ink); font-weight: 600; font-size: 14px; }
 .stage-count span { color: var(--gold); }
 
+/* ---------- Next up ---------- */
+.next-up {
+  background: linear-gradient(120deg, #2a0f45, #1b0b2e);
+  border: 1px solid var(--pink);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+}
+.next-up h2 { margin-bottom: 6px; }
+.next-up-body { color: var(--muted); font-size: 14px; max-width: 860px; }
+.next-up-body strong { color: var(--ink); }
+.next-up-guide { color: var(--ink); }
+.next-up button {
+  margin-top: 10px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--pink);
+  border: 1px solid var(--pink);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.next-up button:hover { filter: brightness(1.1); }
+
 /* ---------- Controls ---------- */
 .controls {
   background: var(--bg2);
@@ -231,6 +255,7 @@ h3 { font-size: 17px; margin: 0 0 6px; }
   text-transform: capitalize;
 }
 .tag.missable { color: #fff; background: var(--red); border-color: var(--red); font-weight: 700; }
+.tag.unconfirmed { color: var(--gold); border-color: var(--gold); font-weight: 700; }
 .tag.hidden-tag { color: var(--cyan); border-color: var(--cyan); }
 .source-link { color: var(--cyan); font-size: 12px; }
 .earned-box {
